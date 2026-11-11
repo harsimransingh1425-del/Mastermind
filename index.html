@@ -1,221 +1,148 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><!-- AURA 2.0 PWA - Manifest + Icon Links -->
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#7c3aed">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="AURA">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
-<link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AURA 2.0 - Architect Of Discipline</title>
+<title>AURA 2.0</title>
 <link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#0a0a0f">
+<meta name="theme-color" content="#7c3aed">
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',system-ui,sans-serif}
-:root{--bg:#0a0a0f;--card:#16161f;--card2:#1e1e2e;--purple:#7c3aed;--violet:#a78bfa;--green:#22c55e;--red:#ef4444;--orange:#f97316;--blue:#3b82f6;--text:#fff;--muted:#9ca3af}
-body{background:var(--bg);color:var(--text);padding-bottom:90px}
-.top{padding:20px 18px 10px;position:sticky;top:0;background:rgba(10,10,15,.92);backdrop-filter:blur(10px);z-index:10}
-.top h1{font-size:28px;letter-spacing:2px}.top h1 span{color:var(--purple)}
-.top p{color:var(--muted);font-size:13px;margin-top:2px}
-.aura-card{margin:14px 16px;background:linear-gradient(135deg,#7c3aed,#4c1d95);border-radius:20px;padding:20px;position:relative;overflow:hidden}
-.aura-card h2{font-size:13px;opacity:.9;letter-spacing:1px}
-.score{font-size:64px;font-weight:900;line-height:1;margin:8px 0}
-.bar{height:10px;background:rgba(255,255,255,.25);border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;background:#fff;border-radius:20px;transition:.5s}
-.rank{margin-top:10px;font-size:13px;background:rgba(0,0,0,.3);display:inline-block;padding:6px 12px;border-radius:20px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px}
-.card{background:var(--card);border-radius:16px;padding:16px;border:1px solid #26263a}
-.card h3{font-size:15px;margin-bottom:6px}.card p{font-size:12px;color:var(--muted);line-height:1.5}
-.card b{color:#fff}
-.big{font-size:32px;font-weight:900}
-.btn{width:100%;background:var(--purple);color:#fff;border:0;padding:14px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;margin-top:10px}
-.btn-green{background:var(--green)}.btn-red{background:var(--red)}.btn-outline{background:transparent;border:1.5px solid #333;color:#fff}
-.btn-small{padding:10px;font-size:13px}
-.section{padding:18px 16px 0}.section h2{font-size:20px;margin-bottom:12px}.section h2 span{font-size:14px;color:var(--muted);font-weight:400}
-.habit{display:flex;align-items:center;gap:12px;background:var(--card);padding:14px;border-radius:14px;margin-bottom:10px;border:1px solid #26263a}
-.habit.done{opacity:.5;border-color:var(--green)}.habit.done .htitle{text-decoration:line-through}
-.check{width:32px;height:32px;border-radius:50%;border:2px solid #444;display:grid;place-items:center;font-size:18px;cursor:pointer;flex-shrink:0}
-.habit.done .check{background:var(--green);border-color:var(--green)}
-.htitle{font-weight:700;font-size:15px}.hsub{font-size:12px;color:var(--muted)}
-input,textarea,select{width:100%;background:var(--card2);border:1px solid #333;color:#fff;padding:12px;border-radius:12px;margin-bottom:10px;font-size:14px;outline:none}
-textarea{min-height:80px;resize:vertical}
-.chip{display:inline-block;padding:7px 12px;background:var(--card2);border:1px solid #333;border-radius:20px;font-size:12px;margin:0 6px 8px 0;cursor:pointer}
-.chip.active{background:var(--purple);border-color:var(--purple)}
-.timer{font-size:72px;font-weight:900;text-align:center;margin:16px 0;letter-spacing:2px}
-.hidden{display:none!important}
-.tabs{position:fixed;bottom:0;left:0;right:0;background:#12121a;border-top:1px solid #26263a;display:flex;padding:8px 0 calc(8px + env(safe-area-inset-bottom));z-index:20}
-.tab{flex:1;text-align:center;font-size:11px;color:var(--muted);cursor:pointer;padding:6px}.tab.active{color:#fff}.tab div{font-size:22px}
-.tool{background:var(--card);border-radius:16px;padding:16px;margin-bottom:12px;border:1px solid #26263a}
-.tool h3{margin-bottom:6px}.tool p{color:var(--muted);font-size:13px;line-height:1.6}
-.badge{display:inline-block;font-size:11px;padding:4px 8px;border-radius:20px;background:#2a1a4a;color:var(--violet);margin-bottom:8px}
-.quote{background:linear-gradient(135deg,#1e1e2e,#2a1a4a);padding:16px;border-radius:14px;margin:14px 16px;font-style:italic;font-size:14px;line-height:1.6;border-left:4px solid var(--purple)}
-.streak-row{display:flex;gap:6px;overflow-x:auto;padding:4px 0}.day{min-width:38px;height:38px;border-radius:10px;background:var(--card2);display:grid;place-items:center;font-size:12px;border:1px solid #333}.day.hit{background:var(--green);color:#fff;border-color:var(--green)}
+body{background:#0a0a0f;color:white;font-family:system-ui}
+.tab{display:none}.tab.active{display:block}
+.navbtn.active{background:#7c3aed;color:white}
+.habit-done{opacity:.5;text-decoration:line-through}
 </style>
 </head>
-<body>
-
-<div class="top">
-<h1>AURA <span>2.0</span></h1>
-<p id="dateLine">Architect of Discipline • Today is your day</p>
-</div>
+<body class="pb-24">
+<div class="max-w-md mx-auto p-4">
+<h1 class="text-3xl font-black">AURA <span class="text-purple-400">2.0</span></h1>
+<p class="text-gray-400 text-sm">Architect Of Discipline</p>
 
 <!-- HOME -->
-<div id="page-home">
-<div class="aura-card">
-<h2>⚡ AURA SCORE - TODAY</h2>
-<div class="score"><span id="scoreVal">0</span><span style="font-size:22px"> / 100</span></div>
-<div class="bar"><i id="scoreBar" style="width:0%"></i></div>
-<div class="rank" id="rankLabel">Rank: DRIFTER • Keep going</div>
-<p style="font-size:12px;margin-top:10px;opacity:.9" id="scoreMsg">Complete habits to raise your Aura. Dopamine is earned, not given.</p>
+<div id="tab-home" class="tab active mt-4">
+<div class="bg-purple-600 rounded-2xl p-5">
+<p>Aura Score</p>
+<h2 id="score" class="text-5xl font-black">0</h2>
+<p class="text-sm opacity-80">Complete habits to increase score</p>
 </div>
 
-<div class="quote" id="quoteBox">"I am the architect of my discipline. I do not rely on motivation. I execute."</div>
-
-<div class="grid">
-<div class="card"><h3>🔥 Streak</h3><div class="big" id="streakVal">0</div><p>days in a row</p></div>
-<div class="card"><h3>🎯 Focus</h3><div class="big"><span id="focusVal">0</span>m</div><p>deep work today</p></div>
-<div class="card"><h3>🧠 Mood</h3><div class="big" id="moodVal">—</div><p id="moodText">Check-in pending</p></div>
-<div class="card"><h3>💧 Water</h3><div class="big"><span id="waterVal">0</span>/8</div><p>glasses</p><button class="btn btn-small btn-green" onclick="addWater()">+ Add Glass</button></div>
-</div>
-
-<div class="section"><h2>🌅 Morning Protocol <span>• Do in order</span></h2></div>
-<div style="padding:0 16px">
-<div class="tool"><span class="badge">STEP 1 • IDENTITY</span><h3>Say it out loud</h3><p>"I am the architect of my discipline. My focus cannot be bought. My peace cannot be shaken. Today I execute."</p><button class="btn btn-small" onclick="completeStep(this,'Identity Locked')">I Said It ✓</button></div>
-<div class="tool"><span class="badge">STEP 2 • BRAIN TRICK</span><h3>1 Win Today - Only 1</h3><p>Your brain fears 10 tasks. Give it ONE. If you win this, day is won.</p><input id="oneWin" placeholder="My 1 Win today is... (e.g. Study 1 hr)"><button class="btn btn-small" onclick="saveWin()">Lock My Win 🎯</button><p id="winSaved" style="color:var(--green);font-size:13px;margin-top:6px"></p></div>
-</div>
-
-<div class="section"><h2>✅ Today's Habits <span>• Tap to complete</span></h2></div>
-<div style="padding:0 16px" id="habitList"></div>
-<div style="padding:0 16px"><input id="newHabit" placeholder="Add new habit... e.g. No sugar"><button class="btn btn-outline" onclick="addHabit()">+ Add Habit</button></div>
-
-<div class="section"><h2>🧠 Mood Check-in</h2></div>
-<div style="padding:0 16px">
-<div id="moodChips">
-<span class="chip" onclick="setMood(1,'😭 Very Low',this)">😭 1</span><span class="chip" onclick="setMood(2,'😔 Low',this)">😔 2</span><span class="chip" onclick="setMood(3,'😐 Okay',this)">😐 3</span><span class="chip" onclick="setMood(4,'🙂 Good',this)">🙂 4</span><span class="chip" onclick="setMood(5,'🔥 Elite',this)">🔥 5</span>
-</div>
-<p style="font-size:12px;color:var(--muted);padding:0 2px">Your mood predicts relapse. Track it, don't judge it.</p>
-</div>
-
-<div class="section"><h2>🌙 Evening Review</h2></div>
-<div style="padding:0 16px">
-<div class="tool"><h3>1. What was my Win today?</h3><textarea id="winReview" placeholder="Even small win counts..."></textarea>
-<h3>2. What broke? What was the trigger?</h3><textarea id="triggerReview" placeholder="e.g. I was bored, opened Instagram..."></textarea>
-<h3>3. Tomorrow's 1 Fix</h3><input id="fixReview" placeholder="Tomorrow I will...">
-<button class="btn btn-green" onclick="saveReview()">Save Review & End Day 🌙</button>
-<p id="reviewSaved" style="color:var(--green);font-size:13px;margin-top:8px"></p></div>
-</div>
+<h3 class="font-bold mt-5 mb-2">Today's Habits - Tap to Complete</h3>
+<div id="habits" class="space-y-2"></div>
+<input id="newHabit" placeholder="New habit likho..." class="w-full mt-3 p-3 rounded-xl bg-zinc-800 outline-none">
+<button onclick="addHabit()" class="w-full bg-purple-600 py-3 rounded-xl mt-2 font-bold">+ Add Habit</button>
+<button onclick="resetHabits()" class="w-full bg-zinc-800 py-2 rounded-xl mt-2 text-sm">Reset Today</button>
 </div>
 
 <!-- FOCUS -->
-<div id="page-focus" class="hidden">
-<div class="section"><h2>🎯 Deep Work <span>• Brain Trick: Pomodoro</span></h2>
-<div class="tool"><p><b>Why this works:</b> Your prefrontal cortex can focus 25 min easily. 2 hours scares it. We trick it with 25 min sprints. Dopamine comes AFTER you finish.</p></div>
+<div id="tab-focus" class="tab mt-4">
+<div class="bg-zinc-900 rounded-2xl p-6 text-center">
+<p>Focus Timer</p>
+<h2 id="timer" class="text-6xl font-black my-4">25:00</h2>
+<button onclick="startTimer()" class="bg-purple-600 px-6 py-3 rounded-full font-bold">Start</button>
+<button onclick="stopTimer()" class="bg-zinc-700 px-6 py-3 rounded-full font-bold ml-2">Stop</button>
+<button onclick="resetTimer()" class="bg-zinc-800 px-4 py-3 rounded-full ml-2">Reset</button>
+<p class="text-sm text-gray-400 mt-3">25 min focus = +20 Aura Score</p>
 </div>
-<div class="timer" id="timerDisplay">25:00</div>
-<p style="text-align:center;color:var(--muted);font-size:13px" id="timerStatus">Ready. Phone on DND. One task only.</p>
-<div style="padding:0 16px;display:flex;gap:10px">
-<button class="btn btn-green" onclick="startTimer()">▶ Start Focus</button>
-<button class="btn btn-red" onclick="stopTimer()">⏹ Stop</button>
-</div>
-<div style="padding:14px 16px"><button class="btn btn-outline" onclick="setTimer(25)">25 min • Sprint</button><button class="btn btn-outline" onclick="setTimer(50)">50 min • Deep</button><button class="btn btn-outline" onclick="setTimer(5)">5 min • Just Start (2-min trick)</button></div>
-
-<div class="section"><h2>📵 Urge Log <span>• Don't fight urge, log it</span></h2></div>
-<div style="padding:0 16px">
-<div class="tool"><p>When you want to scroll / eat junk / quit, don't do it. Tap below. Naming the urge kills 50% of its power - Neuroscience: Affect Labelling.</p>
-<button class="btn" onclick="logUrge('📱 Scroll')">📱 I want to Scroll</button>
-<button class="btn btn-outline" onclick="logUrge('🍫 Junk Food')">🍫 I want Junk</button>
-<button class="btn btn-outline" onclick="logUrge('😴 Quit / Sleep')">😴 I want to Quit</button>
-<p id="urgeCount" style="font-size:13px;color:var(--violet);margin-top:10px">Urges logged today: 0 • Urges survived: 0 - You are stronger than urge.</p></div>
-</div>
-
-<div class="section"><h2>🧱 Habit Stack Builder</h2></div>
-<div style="padding:0 16px"><div class="tool"><p>Formula: <b>After I [current habit], I will [new habit]</b></p><input id="stackAfter" placeholder="After I... e.g. Brush teeth"><input id="stackWill" placeholder="I will... e.g. Meditate 1 min"><button class="btn" onclick="saveStack()">Create Stack 🔗</button><p id="stackSaved" style="color:var(--green);font-size:13px;margin-top:8px"></p></div></div>
 </div>
 
 <!-- MIND -->
-<div id="page-mind" class="hidden">
-<div class="section"><h2>🧠 Mind Lab <span>• CBT + Neuroscience</span></h2></div>
-<div style="padding:0 16px">
-<div class="tool"><span class="badge">CBT • THOUGHT REFRAME</span><h3>1. Catch The Lie</h3><p>Your brain lies when stressed. Example: "I'm a failure" -> Is it 100% true?</p>
-<input id="cbtSit" placeholder="Situation: What happened?"><input id="cbtThought" placeholder="Thought: What did brain say?"><input id="cbtFeel" placeholder="Feeling: Sad / Anxious / Angry?"><textarea id="cbtEvidence" placeholder="Evidence AGAINST this thought: What proves it's NOT fully true?"></textarea><input id="cbtBalanced" placeholder="Balanced Thought: More fair version..."><button class="btn btn-green" onclick="saveCBT()">Reframe It ✅</button><p id="cbtSaved" style="color:var(--green);font-size:13px;margin-top:8px"></p></div>
-
-<div class="tool"><span class="badge">PANIC • GROUNDING</span><h3>5-4-3-2-1 Grounding</h3><p>When anxiety spikes, your amygdala hijacks brain. Grounding brings you back to body. Do this now:</p><p><b>5</b> things you see • <b>4</b> you hear • <b>3</b> you touch • <b>2</b> you smell • <b>1</b> you taste</p><button class="btn" onclick="alert('Look around now. Name 5 things you SEE out loud. You are safe. This feeling will pass in 90 seconds.')">Start Grounding Now 👁️</button></div>
-
-<div class="tool"><span class="badge">BREATHING • 4-7-8</span><h3>Box Breathing</h3><p>Inhale 4s → Hold 4s → Exhale 4s → Hold 4s. This activates vagus nerve, lowers heart rate in 60 seconds.</p><div style="text-align:center;font-size:48px" id="breathCircle">🫁</div><p style="text-align:center" id="breathText">Tap to start</p><button class="btn" onclick="startBreath()">Start Breathing 🌬️</button></div>
-
-<div class="tool"><span class="badge">WORRY • CBT</span><h3>Worry Window</h3><p>Don't worry all day. Write worry here, park it. You will worry ONLY at 7 PM for 10 min. Brain learns: worry has a time.</p><textarea id="worryText" placeholder="My worry is..."></textarea><button class="btn" onclick="saveWorry()">Park This Worry 📦</button><p id="worrySaved" style="color:var(--green);font-size:13px;margin-top:8px"></p></div>
-
-<div class="tool"><span class="badge">SELF-TALK</span><h3>Critic vs Friend</h3><p>Write your harsh self-talk, then rewrite like you'd talk to your best friend.</p><input id="criticText" placeholder="Critic says: I'm lazy..."><input id="friendText" placeholder="Friend would say: You're trying..."><button class="btn btn-outline" onclick="alert('Good. Now read the Friend version 3 times. That is the truth.')">Rewrite It 💜</button></div>
+<div id="tab-mind" class="tab mt-4">
+<div class="bg-zinc-900 rounded-2xl p-5">
+<h3 class="font-bold text-xl">Breathing - 4-7-8</h3>
+<p id="breathText" class="text-4xl text-center my-6 font-black">Ready?</p>
+<button onclick="doBreath()" class="w-full bg-purple-600 py-3 rounded-xl font-bold">Start Breathing</button>
 </div>
-</div>
-
-<!-- BRAIN TRICKS -->
-<div id="page-brain" class="hidden">
-<div class="section"><h2>🧪 Brain Tricks <span>• Trick it to do hard tasks</span></h2></div>
-<div style="padding:0 16px">
-<div class="tool"><span class="badge">TRICK 1 • 2-MIN RULE</span><h3>Make It Too Small To Fail</h3><p>Brain fears "Study 2 hours". It doesn't fear "Open book for 2 min". Start with 2 min, momentum does rest. This is Activation Energy trick.</p><button class="btn btn-green" onclick="setTimer(2);showPage('focus')">Start 2-Min Trick Now ⚡</button></div>
-<div class="tool"><span class="badge">TRICK 2 • TEMPTATION BUNDLING</span><h3>Pair Pain + Pleasure</h3><p>Only listen to favourite music/podcast WHILE doing hard task. Brain starts craving hard task for reward.</p><p><b>Example:</b> While I study, I get to drink cold coffee.</p></div>
-<div class="tool"><span class="badge">TRICK 3 • DOPAMINE DETOX</span><h3>Earn Dopamine, Don't Steal It</h3><p>Morning: NO reels, NO sugar, NO porn. First dopamine must come from WORK. If you steal dopamine early, brain won't work all day.</p><p>✅ Allowed before work: Water, sunlight, walk, cold shower<br>❌ Not allowed: Instagram, YouTube, Gaming</p></div>
-<div class="tool"><span class="badge">TRICK 4 • IF-THEN PLAN</span><h3>Pre-Decide, Don't Decide</h3><p>Willpower fails when you decide in the moment. Pre-decide:</p><p>"<b>IF</b> I feel like scrolling, <b>THEN</b> I will stand up and drink water."</p><input id="ifThen" placeholder="IF I feel... THEN I will..."><button class="btn" onclick="saveIfThen()">Save My If-Then Plan</button><p id="ifThenSaved" style="color:var(--green);font-size:13px;margin-top:8px"></p></div>
-<div class="tool"><span class="badge">TRICK 5 • FUTURE SELF</span><h3>Talk To Future You</h3><p>Close eyes 30 sec. Imagine you 90 days from now - disciplined, fit, calm. What would he tell you now? He would say: "Don't quit today."</p><button class="btn btn-outline" onclick="alert('Future You says: Thank you for not quitting today. I am proud of you.')">Hear Future You 💬</button></div>
-<div class="tool"><span class="badge">TRICK 6 • 5-SECOND RULE</span><h3>5-4-3-2-1 GO</h3><p>When brain says "later", count 5-4-3-2-1 and MOVE your body. Movement breaks overthinking. Mel Robbins rule.</p></div>
-</div>
-</div>
-
-<!-- SOS -->
-<div id="page-sos" class="hidden">
-<div class="section"><h2>🚨 SOS <span>• When you want to quit</span></h2></div>
-<div style="padding:0 16px">
-<div class="tool" style="border-color:var(--red)"><h3>What do you feel right now?</h3>
-<button class="btn btn-red" onclick="sosHelp('relapse')">I want to Relapse / Scroll</button>
-<button class="btn btn-outline" onclick="sosHelp('anxious')">I feel Anxious / Panic</button>
-<button class="btn btn-outline" onclick="sosHelp('sad')">I feel Sad / Lonely</button>
-<button class="btn btn-outline" onclick="sosHelp('angry')">I feel Angry</button>
-<div id="sosResult" style="margin-top:12px;font-size:14px;line-height:1.7"></div></div>
-<div class="tool"><h3>🆘 Emergency Protocol - 60 Sec</h3><p><b>1.</b> Put phone down, stand up<br><b>2.</b> Drink 1 glass water slowly<br><b>3.</b> 5 deep breaths<br><b>4.</b> Splash cold water on face - activates dive reflex, calms heart instantly<br><b>5.</b> Ask: "Will this matter in 1 hour?"</p></div>
-<div class="tool"><h3>💬 If it's serious</h3><p>If you feel you might harm yourself, please talk to someone you trust right now, or call your local emergency number / crisis helpline in India: <b>112</b> or <b>9152987821 (iCall)</b>. You are not alone. This feeling is temporary.</p></div>
+<div class="bg-red-500/20 border border-red-500 rounded-2xl p-5 mt-4">
+<h3 class="font-bold text-red-400 text-xl">SOS - Panic?</h3>
+<p class="text-sm mt-1">5 cheezein dekho, 4 chuo, 3 suno, 2 sungho, 1 taste karo. Tu safe hai.</p>
+<button onclick="alert('Tu safe hai. Gehri saans le. 4 sec in, 7 sec hold, 8 sec out.')" class="w-full bg-red-500 py-3 rounded-xl font-bold mt-3">I Need Help Now</button>
 </div>
 </div>
 
 <!-- JOURNAL -->
-<div id="page-journal" class="hidden">
-<div class="section"><h2>📓 Journal <span>• Brain Dump</span></h2></div>
-<div style="padding:0 16px">
-<div class="tool"><p>Brain dump = empty your mind. When thoughts are on paper, brain stops looping them. Write anything, no filter.</p><textarea id="journalText" placeholder="What's on my mind right now... No one will read this. Be honest."></textarea><button class="btn" onclick="saveJournal()">Save Entry 🔒</button><p id="journalSaved" style="color:var(--green);font-size:13px;margin-top:8px"></p></div>
-<div class="tool"><h3>🙏 3 Gratitudes</h3><input id="g1" placeholder="1. I am grateful for..."><input id="g2" placeholder="2. I am grateful for..."><input id="g3" placeholder="3. I am grateful for..."><button class="btn btn-green" onclick="saveGratitude()">Save Gratitude</button></div>
-<div class="tool"><h3>📈 My History</h3><div id="historyList" style="font-size:13px;color:var(--muted);line-height:1.7">No entries yet. Start today.</div><button class="btn btn-outline" onclick="clearAll()">Clear All Data</button></div>
-</div>
+<div id="tab-journal" class="tab mt-4">
+<h3 class="font-bold mb-2">Journal - Aaj kaisa laga?</h3>
+<textarea id="journalText" placeholder="Aaj kya hua? Likho..." class="w-full h-32 p-3 rounded-xl bg-zinc-800 outline-none"></textarea>
+<button onclick="saveJournal()" class="w-full bg-purple-600 py-3 rounded-xl font-bold mt-2">Save Journal</button>
+<div id="journalList" class="mt-4 space-y-2"></div>
+<button onclick="exportData()" class="w-full bg-green-600 py-3 rounded-xl font-bold mt-4">⬇ Download Backup (Data Safe Rahega)</button>
+<p class="text-xs text-gray-400 text-center mt-2">Backup download karke rakh, kabhi data nahi udega</p>
 </div>
 
-<div class="tabs">
-<div class="tab active" onclick="showPage('home',this)"><div>🏠</div>Home</div>
-<div class="tab" onclick="showPage('focus',this)"><div>🎯</div>Focus</div>
-<div class="tab" onclick="showPage('mind',this)"><div>🧠</div>Mind</div>
-<div class="tab" onclick="showPage('brain',this)"><div>🧪</div>Brain</div>
-<div class="tab" onclick="showPage('sos',this)"><div>🚨</div>SOS</div>
-<div class="tab" onclick="showPage('journal',this)"><div>📓</div>Journal</div>
+</div>
+
+<!-- BOTTOM NAV -->
+<div class="fixed bottom-0 left-0 right-0 bg-zinc-900 border-t border-zinc-800">
+<div class="max-w-md mx-auto grid grid-cols-4">
+<button onclick="showTab('home',this)" class="navbtn active py-4 text-sm font-bold">🏠 Home</button>
+<button onclick="showTab('focus',this)" class="navbtn py-4 text-sm font-bold">🎯 Focus</button>
+<button onclick="showTab('mind',this)" class="navbtn py-4 text-sm font-bold">🧠 Mind</button>
+<button onclick="showTab('journal',this)" class="navbtn py-4 text-sm font-bold">📓 Journal</button>
+</div>
 </div>
 
 <script>
-let habits=[
-{id:1,title:'Wake up before 7 AM',sub:'No snooze • Dopamine trick',done:false},
-{id:2,title:'No Reels Before Work',sub:'Dopamine Detox • Earn first',done:false},
-{id:3,title:'Deep Work 50 min',sub:'Phone on DND',done:false},
-{id:4,title:'10 min Walk + Sunlight',sub:'Serotonin + Vitamin D',done:false},
-{id:5,title:'Meditate / Breathe 5 min',sub:'Calm amygdala',done:false},
-{id:6,title:'No Sugar / Junk',sub:'Stable dopamine',done:false},
-{id:7,title:'Read 10 pages',sub:'Identity: Learner',done:false},
-{id:8,title:'Sleep by 11 PM',sub:'Brain cleans itself in sleep',done:false},
-];
-let water=0,focusMin=0,urges=0,score=0,streak=parseInt(localStorage.getItem('aura_streak')||'0');
-let timerInt=null,seconds=25*60;
-const quotes=["I am the architect of my discipline. I do not rely on motivation. I execute.","One miss is an accident. Two misses is a new habit. Never miss twice.","Your future self is watching you right now. Make him proud.","Discipline is choosing what you want most over what you want now.","If you can control your morning, you can control your day."];
-document.getElementById('dateLine').innerText=new Date().toDateString()+" • Architect Mode";
-document.getElementById('quoteBox').innerText='"'+quotes[Math.floor(Math.random()*quotes.length)]+'"';
-document.getElementById('streakVal').innerText=streak;
-function showPage(p,el){['home','focus','mind','brain','sos','journal'].forEach(x=>document.getElementById('page-'+x).classList.add('hidden'));document.getElementById('page-'+p).classList.remove('hidden');document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));if(el)el.classList.add('active');window.scrollTo(0,0)}
-function renderHabits(){let h=document.getElementById('habitList');h.innerHTML='';habits.forEach(hb=>{let d=document.createElement('div');d.className='habit'+(hb.done?' done':'');d.innerHTML=`<div class="check" onclick="toggleHabit(${hb.id})">${hb.done?'✓':''}</div><div style="flex:1"><div class="htitle">${hb.title}</di
+let habits = JSON.parse(localStorage.getItem('aura_habits') || '["Wake up early","No phone 1 hr","Workout","Read 10 pages"]');
+let score = parseInt(localStorage.getItem('aura_score') || '0');
+let done = JSON.parse(localStorage.getItem('aura_done') || '[]');
+
+function render(){
+  document.getElementById('score').innerText = score;
+  let h = document.getElementById('habits');
+  h.innerHTML = '';
+  habits.forEach((hab,i)=>{
+    let isDone = done.includes(i);
+    h.innerHTML += `<div onclick="toggleHabit(${i})" class="bg-zinc-900 p-4 rounded-xl flex justify-between cursor-pointer ${isDone?'habit-done':''}"><span>${isDone?'✅ ':''}${hab}</span><span>${isDone?'Done':'Tap'}</span></div>`;
+  });
+  let j = JSON.parse(localStorage.getItem('aura_journal') || '[]');
+  document.getElementById('journalList').innerHTML = j.map(x=>`<div class="bg-zinc-900 p-3 rounded-xl text-sm">${x}</div>`).join('');
+}
+function toggleHabit(i){
+  if(done.includes(i)){ done = done.filter(x=>x!==i); score-=10; }
+  else { done.push(i); score+=10; }
+  saveAll(); render();
+}
+function addHabit(){
+  let v = document.getElementById('newHabit').value.trim();
+  if(!v) return; habits.push(v); document.getElementById('newHabit').value=''; saveAll(); render();
+}
+function resetHabits(){ done=[]; saveAll(); render(); }
+function saveAll(){
+  localStorage.setItem('aura_habits', JSON.stringify(habits));
+  localStorage.setItem('aura_done', JSON.stringify(done));
+  localStorage.setItem('aura_score', score);
+}
+function showTab(id,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('.navbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+}
+// Timer
+let secs = 25*60, interval=null;
+function updateTimer(){ let m=Math.floor(secs/60), s=secs%60; document.getElementById('timer').innerText = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; }
+function startTimer(){
+  if(interval) return;
+  interval = setInterval(()=>{ secs--; updateTimer(); if(secs<=0){ clearInterval(interval); interval=null; score+=20; saveAll(); render(); alert('Focus Complete! +20 Score'); secs=25*60; updateTimer(); } },1000);
+}
+function stopTimer(){ clearInterval(interval); interval=null; }
+function resetTimer(){ stopTimer(); secs=25*60; updateTimer(); }
+// Breath
+function doBreath(){
+  let el=document.getElementById('breathText');
+  el.innerText='Breathe IN... 4 sec'; setTimeout(()=>el.innerText='HOLD... 7 sec',4000); setTimeout(()=>el.innerText='Breathe OUT... 8 sec',11000); setTimeout(()=>el.innerText='Done! ✅ +5 Score',19000); score+=5; saveAll(); render();
+}
+function saveJournal(){
+  let v=document.getElementById('journalText').value.trim(); if(!v) return;
+  let j=JSON.parse(localStorage.getItem('aura_journal')||'[]'); j.unshift(new Date().toLocaleDateString()+' - '+v); localStorage.setItem('aura_journal',JSON.stringify(j)); document.getElementById('journalText').value=''; render();
+}
+function exportData(){
+  let data = {habits, score, done, journal: JSON.parse(localStorage.getItem('aura_journal')||'[]')};
+  let blob = new Blob([JSON.stringify(data)],{type:'application/json'});
+  let a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='aura-backup.json'; a.click();
+}
+render(); updateTimer();
+</script>
+</body>
+</html>
